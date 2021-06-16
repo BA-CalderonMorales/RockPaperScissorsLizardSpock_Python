@@ -1,18 +1,17 @@
 #  Loop to continue gameplay until best of 3, or;
 #  One side has to get at least 2 wins out of 3 matches.
-from gesture import Gesture
-
-
-class ResultHuman(Gesture):
-    def __init__(self):
-        super().__init__()
+class ResultHuman:
+    def __init__(self, human_one, human_two):
+        self.game_running = False
         self.champion = ""
+        self.temp_one = human_one
+        self.temp_two = human_two
+
+    def round(self):
+        pass
 
     def game_over(self):
-        game_running = True
-        while game_running:
-            print("\n\nChoose a gesture: ")
-
+        pass
 
     def game_winner(self):
-        return self.champion
+        pass

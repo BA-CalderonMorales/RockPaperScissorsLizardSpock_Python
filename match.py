@@ -9,9 +9,9 @@ class Match:
     def __init__(self):
         self.player_one = Human("Empty")
         self.player_two = None
+        self.gesture_results = Gesture(None, None)
         self.story_line = ""
         self.winner = ""
-        self.game_running = False
 
     #  endregion
 
@@ -27,8 +27,10 @@ class Match:
 
         #  Display outro message. The winner will come
         #  from the outcome of the story the user steps
-        #  into.
-        self.display_outro(self.winner)
+        #  into. self.gesture_results temporarily holds the
+        #  results from the end of a match and then sets
+        #  it equal to self.winner.
+        self.display_outro()
 
     #  endregion
 
@@ -43,6 +45,7 @@ class Match:
         #  Option A: Human v. AI - bots
         #  Option B: Human v. Human - no bots
         self.game_mode(story_mode)
+
     #  endregion
 
     #  region Game_Mode
@@ -96,6 +99,7 @@ class Match:
             #  If the user inputs anything other than 'y' or 'n', re-prompt
             print("That's not an option. Please try again.")
             self.is_user_ready(human_or_bot)
+
     #  endregion
 
     #  region Bots_Or_Not
@@ -107,30 +111,44 @@ class Match:
             self.option_human_v_computer()
         elif decision.lower() == "no bots":
             self.option_human_v_human()
+
     #  endregion
 
     #  region Option_Human_V_Computer
     def option_human_v_computer(self):
-        gesture_results = Gesture()
-        gesture_results.set_player_one(self.player_one)  # The person playing
-        gesture_results.set_player_two(self.player_two)  # Should be human
-        gesture_results.human_v_human()  # The game loop will occur here
-        self.winner = gesture_results.get_the_winner()  # Game is finished, returns winner
-        pass
+        #  The human will go up against another human
+        #  Instantiate a Gesture object.
+        self.gesture_results = Gesture(self.player_one, self.player_two)
+
+        #  The gesture_results.human_v_computer should set the value of self.winner inside
+        #  of the Gesture class.
+        self.gesture_results.human_v_computer()  # The game loop will occur here, no return value
+
+        #  Then, the value inside of the Gesture class (self.match_winner), will be called
+        #  by following the logic below.  The winner is now set and can be displayed in
+        #  self.display_outro(self).
+        self.winner = self.gesture_results.find_the_winner()
     #  endregion
 
     #  region Option_Human_V_Human
     def option_human_v_human(self):
         #  The human will go up against another human
-        gesture_results = Gesture()
-        gesture_results.set_player_one(self.player_one)  # The person playing
-        gesture_results.set_player_two(self.player_two)  # Should be human
-        gesture_results.human_v_human()  # The game loop will occur here
-        self.winner = gesture_results.get_the_winner()  # Game is finished, returns winner
+        #  Instantiate a Gesture object.
+        self.gesture_results = Gesture(self.player_one, self.player_two)
+
+        #  The gesture_results.human_v_human should set the value of self.winner inside
+        #  of the Gesture class.
+        self.gesture_results.human_v_human()  # The game loop will occur here, no return value
+
+        #  Then, the value inside of the Gesture class (self.match_winner), will be called
+        #  by following the logic below.  The winner is now set and can be displayed in
+        #  self.display_outro(self).
+        self.winner = self.gesture_results.find_the_winner()
     #  endregion
 
     #  region Display_Outro
     def display_outro(self):
+        self.winner = self.gesture_results.find_the_winner()
         #  The winner comes from gesture_results.get_the_winner() in either one of the
         #  option methods above this one.
         print(f"\n\nAnd the winner for this game is: {self.winner}")
