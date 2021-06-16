@@ -12,7 +12,7 @@ class Player:
         self.player = the_name  # Can be an AI or human
         self.gesture_options = ["Rock", "Paper", "Scissors", "Lizard", "Spock"]
         self.the_gesture = ""
-        self.score = 0  # Dictates player lives
+        self.lives = 3  # Dictates player lives
     #  endregion
 
     #  region Gestures

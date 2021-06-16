@@ -12,104 +12,129 @@ class Match:
         self.story_line = ""
         self.winner = ""
         self.game_running = False
+
     #  endregion
 
     #  region Run_Game
     def run_game(self):
         #  Display welcome screen
-
         self.display_welcome()
 
-        #  Prompt user to choose whether they want to let
-        #  the bots duke it out, or if they want to go up
+        #  Prompt user to choose whether they want to
+        #  duke it out with a bot, or if they want to go up
         #  against a buddy near by to see who wins.
+        self.story()
 
-        self.story_line = input("\n\nDo you want to go up against "
-                                "another person? Or do \nyou "
-                                "want to let the bots go at it?"
-                                "\n\nEnter either 'Bots' or "
-                                "'No Bots':\n\n")
-
-        #  User choice is reached - two clear options:
-        #  Option A: Human v. AI
-        #  Option B: Human v. Human
-
-        self.game_mode(self.story_line)
-
-        #  Display outro message
-
+        #  Display outro message. The winner will come
+        #  from the outcome of the story the user steps
+        #  into.
         self.display_outro(self.winner)
 
     #  endregion
 
+    #  region Story
+    def story(self):
+        story_mode = input("\n\nDo you want to go up against "
+                           "another person? Or do \nyou "
+                           "want to go up against a bot?"
+                           "\n\nEnter either 'Bots' or "
+                           "'No Bots':\n\n")
+        #  User choice is reached - two clear options:
+        #  Option A: Human v. AI - bots
+        #  Option B: Human v. Human - no bots
+        self.game_mode(story_mode)
+    #  endregion
+
     #  region Game_Mode
     def game_mode(self, the_choice):
-        #  Option A: AI v. AI - self.player_two is human or computer
+        #  Option A: Human v. AI - self.player_two is a computer
         if the_choice.lower() == "bots":
             """
             player_one will always remain a Human(). 
             """
+            self.player_one.player = input("\nEnter a nickname for yourself:\n\n")
             self.player_two = Computer("The God Bot")
-            self.player_one.player = input("\nEnter a nickname?\n\n")
-            print(f"Right now, you're up against {self.player_two.player}\n\n")
-            self.game_running = True
-            #  While game_running is true, keep playing
-            while self.game_running:
-                #  Enter sequence - return False when the game ends
-                #  the_choice here will be "bots"
-                self.game_running = self.player_options(the_choice)  # False when End Game
-            #  The winner is declared inside player_one_options(..., ..., ...)
-            self.winner = the_choice + "-- The Human v. AI storyline victor"
-        #  Option B: Human v. Human
+            print(f"You're currently up against {self.player_two.player}\n\n")
+            #  Ask the user if they're ready to play. They can change their settings here
+            self.is_user_ready(the_choice)
+            #  If the user is ready, the sequence of the game will begin in self.is_user_ready()
+            #  After user enters into self.is_user_ready(), the game will need to finish before
+            #  the final method in self.run_game() occurs (self.display_outro). The outro msg
+            #  will display the winner of the game.
+        #  Option B: Human v. Human - self.player_two is a human
         elif the_choice.lower() == "no bots":
-            """
-            player_two will be where there be a condition allowing the 
-            user to go up against either another human or the computer.
-            """
+            #  Instantiate players and give nicknames to them for clarity.
             self.player_one = Human("")
             self.player_two = Human("")
             self.player_one.player = input("\n\nPlayer one, enter a nickname:\n\n")
             self.player_two.player = input("\n\nPlayer two, enter a nickname:\n\n")
-            self.game_running = True
-            #  While game_running is true, keep playing
-            while self.game_running:
-                #  Enter sequence - return False when the game ends
-                #  the_choice here will be "no bots"
-                self.game_running = self.player_options(the_choice)
-            #  The winner is declared inside player_one_options(..., ..., ...)
-            self.winner = the_choice + "-- The Human v. Human storyline victor"
-        #  Option C: Invalid option. Try again.
+            #  Ask the user if they're ready to play. They can change their settings here
+            self.is_user_ready(the_choice)
+            #  If the user is ready, the sequence of the game will begin in self.is_user_ready()
+            #  After user enters into self.is_user_ready(), the game will need to finish before
+            #  the final method in self.run_game() occurs (self.display_outro). The outro msg
+            #  will display the winner of the game.
         else:
             print("\n\nSorry, that's not an option. Please choose again.")
-            a_choice = input("\n'Bots' or 'No Bots:\n\n")
-            #  Re-enter game_mode(...) decision-making process
-            self.game_mode(a_choice)
+            #  If the user chooses anything other than "bots" or "no bots", they're re-prompted.
+            self.story()
+
     #  endregion
 
-    def player_options(self, decision):
-        the_result = True
+    #  region Is_User_Ready
+    def is_user_ready(self, human_or_bot):
+        setting = input("Are you ready to play? Enter 'y' for yes, \n"
+                        "or 'n' to change the settings for the game:\n\n")
+        if setting.lower() == 'y':
+            #  Based off of the bots or no bots choice given in self.game_mode()
+            #  human_or_bot will dictate whether they go against a human or bot.
+            self.bots_or_not(human_or_bot)
+        elif setting.lower() == 'n':
+            #  Prompt the user with settings to run specific story line
+            self.story()
+        else:
+            #  If the user inputs anything other than 'y' or 'n', re-prompt
+            print("That's not an option. Please try again.")
+            self.is_user_ready(human_or_bot)
+    #  endregion
 
-        while the_result:
-            if decision.lower() == "bots":
-                #  They will hash it out.
-                the_result = False  # Change once gameplay for human_v_human is finished
-                #  Will come back to this portion.
+    #  region Bots_Or_Not
+    def bots_or_not(self, decision):
+        #  The outcome of self.option_human_v_computer() will dictate the winner so
+        #  that the self.display_outro will actually have a winner to display
+        #  to the users. The same goes for self.option_human_v_human().
+        if decision.lower() == "bots":
+            self.option_human_v_computer()
+        elif decision.lower() == "no bots":
+            self.option_human_v_human()
+    #  endregion
 
-            elif decision.lower() == "no bots":
-                #  The human will go up against another human
-                gesture_results = Gesture()
-                gesture_results.set_player_two(self.player_two)  # Should be human
-                the_result = gesture_results.human_v_human()  # False when End Game
-            else:
-                #  Ever...
-                print("This should not print")
-            return the_result
+    #  region Option_Human_V_Computer
+    def option_human_v_computer(self):
+        gesture_results = Gesture()
+        gesture_results.set_player_one(self.player_one)  # The person playing
+        gesture_results.set_player_two(self.player_two)  # Should be human
+        gesture_results.human_v_human()  # The game loop will occur here
+        self.winner = gesture_results.get_the_winner()  # Game is finished, returns winner
         pass
+    #  endregion
+
+    #  region Option_Human_V_Human
+    def option_human_v_human(self):
+        #  The human will go up against another human
+        gesture_results = Gesture()
+        gesture_results.set_player_one(self.player_one)  # The person playing
+        gesture_results.set_player_two(self.player_two)  # Should be human
+        gesture_results.human_v_human()  # The game loop will occur here
+        self.winner = gesture_results.get_the_winner()  # Game is finished, returns winner
+    #  endregion
 
     #  region Display_Outro
-    def display_outro(self, the_winner):
-        self.winner = the_winner
+    def display_outro(self):
+        #  The winner comes from gesture_results.get_the_winner() in either one of the
+        #  option methods above this one.
         print(f"\n\nAnd the winner for this game is: {self.winner}")
+
     #  endregion
 
     #  region Display_Welcome
