@@ -1,6 +1,8 @@
 from computer import Computer
 from gesture import Gesture
+from player import Player
 from human import Human
+
 
 
 class Match:
@@ -11,7 +13,7 @@ class Match:
         self.player_two = None
         self.gesture_results = Gesture(None, None)
         self.story_line = ""
-        self.winner = ""
+        self.winner = Player("Empty")
 
     #  endregion
 
@@ -151,7 +153,7 @@ class Match:
         self.winner = self.gesture_results.find_the_winner()
         #  The winner comes from gesture_results.get_the_winner() in either one of the
         #  option methods above this one.
-        print(f"\n\nAnd the winner for this game is: {self.winner}")
+        print(f"\n\nAnd the winner for this game is: {self.winner.player}")
 
     #  endregion
 

@@ -14,4 +14,10 @@ class ResultComputer:
         pass
 
     def game_winner(self):
-        return self.champion
+        pass
+
+    def loop_result(self):
+        return self.game_running
+
+    def update_loop(self, true_or_false):
+        self.game_running = true_or_false
