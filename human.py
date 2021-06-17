@@ -13,7 +13,7 @@ class Human(Player):
         return self.gesture_options
     #  endregion
 
-    #  region Special_Gesture
+    #  region Special_Gesture overrides Special_Gesture in Player()
     def special_gesture(self, some_gesture):
         self.the_gesture = ""
         gesture_list = self.choose_gesture()

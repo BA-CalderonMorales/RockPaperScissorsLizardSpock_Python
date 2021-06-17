@@ -22,4 +22,5 @@ class Computer(Player):
     def get_gesture(self):
         self.choose_gesture()
         return self.the_gesture
+    #  endregion
 

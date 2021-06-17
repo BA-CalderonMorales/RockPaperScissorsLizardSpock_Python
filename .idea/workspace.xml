@@ -4,15 +4,8 @@
     <list default="true" id="01147034-e673-465d-b189-2ac8ee98e03d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/computer.py" beforeDir="false" afterPath="$PROJECT_DIR$/computer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gesture.py" beforeDir="false" afterPath="$PROJECT_DIR$/gesture.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/human.py" beforeDir="false" afterPath="$PROJECT_DIR$/human.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lizard.py" beforeDir="false" afterPath="$PROJECT_DIR$/lizard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/match.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper.py" beforeDir="false" afterPath="$PROJECT_DIR$/paper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rock.py" beforeDir="false" afterPath="$PROJECT_DIR$/rock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scissors.py" beforeDir="false" afterPath="$PROJECT_DIR$/scissors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spock.py" beforeDir="false" afterPath="$PROJECT_DIR$/spock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
