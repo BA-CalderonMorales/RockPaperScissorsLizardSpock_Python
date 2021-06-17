@@ -37,9 +37,9 @@ class Match:
 
     #  region Story
     def story(self):
-        story_mode = input("\n\nDo you want to go up against "
-                           "another person? Or do \nyou "
-                           "want to go up against a bot?"
+        story_mode = input("\nSo, do you want to go up against "
+                           "another person? Or do "
+                           "\nyou want to go up against a bot?"
                            "\n\nEnter either 'Bots' or "
                            "'No Bots':\n\n")
         #  User choice is reached - two clear options:
@@ -52,13 +52,13 @@ class Match:
     #  region Game_Mode
     def game_mode(self, the_choice):
         #  Option A: Human v. AI - self.player_two is a computer
-        if the_choice.lower() == "bots":
+        if the_choice.lower().strip() == "bots":
             """
             player_one will always remain a Human(). 
             """
             self.player_one.player = input("\nEnter a nickname for yourself:\n\n")
             self.player_two = Computer("The God Bot")
-            print(f"You're currently up against {self.player_two.player}\n\n")
+            print(f"\nYou're currently up against {self.player_two.player}")
             #  Ask the user if they're ready to play. They can change their settings here
             self.is_user_ready(the_choice)
             #  If the user is ready, the sequence of the game will begin in self.is_user_ready()
@@ -66,12 +66,12 @@ class Match:
             #  the final method in self.run_game() occurs (self.display_outro). The outro msg
             #  will display the winner of the game.
         #  Option B: Human v. Human - self.player_two is a human
-        elif the_choice.lower() == "no bots":
+        elif the_choice.lower().strip() == "no bots":
             #  Instantiate players and give nicknames to them for clarity.
             self.player_one = Human("")
             self.player_two = Human("")
-            self.player_one.player = input("\n\nPlayer one, enter a nickname:\n\n")
-            self.player_two.player = input("\n\nPlayer two, enter a nickname:\n\n")
+            self.player_one.player = input("\nPlayer one, enter a nickname:\n\n")
+            self.player_two.player = input("\nPlayer two, enter a nickname:\n\n")
             #  Ask the user if they're ready to play. They can change their settings here
             self.is_user_ready(the_choice)
             #  If the user is ready, the sequence of the game will begin in self.is_user_ready()
@@ -89,16 +89,16 @@ class Match:
     def is_user_ready(self, human_or_bot):
         setting = input("\nAre you ready to play? Enter 'y' for yes, \n"
                         "or 'n' to change the settings for the game:\n\n")
-        if setting.lower() == 'y':
+        if setting.lower().strip() == 'y':
             #  Based off of the bots or no bots choice given in self.game_mode()
             #  human_or_bot will dictate whether they go against a human or bot.
             self.bots_or_not(human_or_bot)
-        elif setting.lower() == 'n':
+        elif setting.lower().strip() == 'n':
             #  Prompt the user with settings to run specific story line
             self.story()
         else:
             #  If the user inputs anything other than 'y' or 'n', re-prompt
-            print("That's not an option. Please try again.")
+            print("\nThat's not an option. Please try again.\n")
             self.is_user_ready(human_or_bot)
 
     #  endregion
@@ -117,7 +117,7 @@ class Match:
 
     #  region Option_Human_V_Computer
     def option_human_v_computer(self):
-        #  The human will go up against another human
+        #  The human will go up against the computer
         #  Instantiate a Gesture object.
         #  print(f"{self.player_one.player}"), verified that it was player_one
         #  print(f"{self.player_two.player}"), verified that it was player_two
@@ -160,8 +160,10 @@ class Match:
         self.winner = self.gesture_results.find_the_winner()
         #  The winner comes from gesture_results.get_the_winner() in either one of the
         #  option methods above this one.
-        print(f"\n\nAnd the winner for this game is: {self.winner.player}")
-
+        print(f"\n\nAnd the winner for this match is: {self.winner.player}\n")
+        choice = input("Do you want to play again? Enter 'y' for yes "
+                       "or 'n' for no: \n\n")
+        self.replay_game(choice)
     #  endregion
 
     #  region Display_Welcome
@@ -169,15 +171,28 @@ class Match:
         print("\n\nWelcome to Rock, Paper, Scissors, Lizard, Spock\n\n")
 
         #  Indicate rules of the match
-        print("Here are some rules are before you get started:\n\n"
-              "First: Pick whether you want to go against another\n"
-              "human, or if you want the computer to go against a\n"
-              "bot.\n\n"
-              "Second: You are only allowed three lives per game.\n"
-              "So, if you decide to let the computer play in your\n"
-              "place, the computer and the opponent will only have\n"
-              "three total lives.\n\n"
-              "Third: Finally, the winner will be decided once the\n"
-              "loser has no lives left in the game.\n\n"
+        print("Here are some rules before you get started:\n\n"
+              "1) Pick whether you want to go against another\n"
+              "human, or if you want to go against a bot.\n\n"
+              "2) It follows that a player must win 2 out "
+              "of 3\n"
+              "rounds two win the match.\n\n"
+              "3) Finally, if there is a tie, the game will keep\n"
+              "going until one player wins 2 out of 3 total "
+              "rounds.\n\n"
               "And that's it!")
+
+    #  endregion
+
+    #  region Replay_Game
+    def replay_game(self, option):
+        if option.lower().strip() == 'y':
+            self.story()
+        elif option.lower().strip() == 'n':
+            print("\nTake care!")
+        else:
+            print("\nThat's not an option. Please try again.\n")
+            choice = input("Do you want to play again? Enter 'y' for yes "
+                           "or 'n' for no: \n")
+            self.replay_game(choice)
     #  endregion

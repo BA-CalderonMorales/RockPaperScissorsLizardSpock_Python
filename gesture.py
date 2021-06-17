@@ -11,22 +11,23 @@ class Gesture:
         self.loop = True
     #  endregion
 
-    #  region Human_v_Human
+    #  region Human_v_Computer
     def human_v_computer(self):
         current_game_state = self.loop
+        count = 1
+        print(f"\nThis is the start of round {count}\n")
         while current_game_state:
             if current_game_state:
-                print("\nThis is the start of the human v computer loop\n")
-
-                #  User input is taken in from both humans.
+                #  User input is taken in from player_one only.
                 self.player_one.gestures()
                 one_input = input(f"{self.player_one.player}, pick a gesture from above by typing "
                                   "the gesture name:\n\n")
-                print("\n")
 
                 #  Each user is assigned a gesture for this round. A gesture is returned (i.e. rock, paper, ...)
-                player_one_gesture = self.player_one.choose_gesture(one_input)
-                player_two_gesture = self.player_two.choose_gesture(self.player_two.choose_gesture())
+                player_one_gesture = self.player_one.special_gesture(one_input)
+                #  Player two is a bot, so their chosen gesture will be random.
+                player_two_gesture = self.player_two.get_gesture()
+                print(f"\nLooks like {self.player_two.player} chose: {self.player_two.the_gesture}")
 
                 #  Get a result from the current round, based off of game rules and previous method.
                 self.get_round_result(player_one_gesture, player_two_gesture)
@@ -44,36 +45,33 @@ class Gesture:
 
                 #  If self.get_round_result takes too many lives away from one or the other person, then
                 #  the game will end in the following bit of code.
-                self.loop = self.end_game_logic()
+                self.loop = self.end_game_logic_computer()
                 if not self.loop:
                     #  Stop if a certain condition is met
                     current_game_state = self.loop
                     self.update_loop(self.loop)
-
-            else:
-                #  Because we know the outcome can be Human or a Computer
-                self.set_the_winner(Player("Some winner - Can be Human or Comp"))
+                else:
+                    count += 1
+                    print(f"\nRound: {count}\n")
     #  endregion
 
-    #  region Human_v_Computer
+    #  region Human_v_Human
     def human_v_human(self):
         current_game_state = self.loop
+        count = 1
+        print(f"\nThis is the start of round {count}\n")
         while current_game_state:
             if current_game_state:
-                print("\nThis is the start of the human v human loop\n")
-
                 #  User input is taken in from both humans.
                 self.player_one.gestures()
                 one_input = input(f"{self.player_one.player}, pick a gesture from above by typing "
                                   "the gesture name:\n\n")
-                print("\n")
-                two_input = input(f"{self.player_two.player}, pick a gesture from above by typing "
+                two_input = input(f"\n{self.player_two.player}, pick a gesture from above by typing "
                                   f"the gesture name:\n\n")
-                print("\n")
 
                 #  Each user is assigned a gesture for this round. A gesture is returned (i.e. rock, paper, ...)
-                player_one_gesture = self.player_one.choose_gesture(one_input)
-                player_two_gesture = self.player_two.choose_gesture(two_input)
+                player_one_gesture = self.player_one.special_gesture(one_input)
+                player_two_gesture = self.player_two.special_gesture(two_input)
 
                 #  Get a result from the current round, based off of game rules and previous method.
                 self.get_round_result(player_one_gesture, player_two_gesture)
@@ -91,15 +89,14 @@ class Gesture:
 
                 #  If self.get_round_result takes too many lives away from one or the other person, then
                 #  the game will end in the following bit of code.
-                self.loop = self.end_game_logic()
+                self.loop = self.end_game_logic_human()
                 if not self.loop:
                     #  Stop if a certain condition is met
                     current_game_state = self.loop
                     self.update_loop(self.loop)
-
-            else:
-                #  Because we know the outcome can only be a Human
-                self.set_the_winner(Human("Some winner - Can only be Human"))
+                else:
+                    count += 1
+                    print(f"\n\nRound: {count}\n")
     #  endregion
 
     #  region Set_Player_One
@@ -198,17 +195,36 @@ class Gesture:
             self.player_two.loss()
     #  endregion
 
-    #  region End_Game_Logic
-    def end_game_logic(self):
+    #  region End_Game_Logic_Computer
+    def end_game_logic_computer(self):
         result = True
-        if self.player_one.lives <= 0 and self.player_two.lives >= 1:
-            self.set_the_winner(self.player_two)
-            result = False
-        elif self.player_one.lives >= 1 and self.player_two.lives <= 0:
+        if self.player_one.lives >= 1 and self.player_two.lives <= 0:
             self.set_the_winner(self.player_one)
             result = False
         elif self.player_one.lives == 2 and self.player_two.lives == 0:
             self.set_the_winner(self.player_one)
+            result = False
+        elif self.player_one.lives <= 0 and self.player_two.lives >= 1:
+            self.set_the_winner(self.player_two)
+            result = False
+        elif self.player_one.lives == 0 and self.player_two.lives == 2:
+            self.set_the_winner(self.player_two)
+            result = False
+
+        return result
+    #  endregion
+
+    #  region End_Game_Logic_Human
+    def end_game_logic_human(self):
+        result = True
+        if self.player_one.lives >= 1 and self.player_two.lives <= 0:
+            self.set_the_winner(self.player_one)
+            result = False
+        elif self.player_one.lives == 2 and self.player_two.lives == 0:
+            self.set_the_winner(self.player_one)
+            result = False
+        elif self.player_one.lives <= 0 and self.player_two.lives >= 1:
+            self.set_the_winner(self.player_two)
             result = False
         elif self.player_one.lives == 0 and self.player_two.lives == 2:
             self.set_the_winner(self.player_two)

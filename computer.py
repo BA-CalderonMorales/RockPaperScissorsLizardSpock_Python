@@ -1,5 +1,5 @@
 from player import Player
-from random import random
+import random
 
 
 class Computer(Player):
@@ -15,5 +15,11 @@ class Computer(Player):
         #  This method is overriding the choose_gestures method in
         #  the Player class.
         rand = random.randint(0, 4)
-        self.the_gesture = self.gesture_options[rand]
+        self.the_gesture = self.gesture_options[rand].lower()
     #  endregion
+
+    #  region Get_Gesture overrides Player Get_Gesture
+    def get_gesture(self):
+        self.choose_gesture()
+        return self.the_gesture
+
