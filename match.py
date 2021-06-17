@@ -1,8 +1,7 @@
 from computer import Computer
-from gesture import Gesture
 from player import Player
 from human import Human
-
+from gesture import Gesture
 
 
 class Match:
@@ -10,7 +9,7 @@ class Match:
     #  region Constructor
     def __init__(self):
         self.player_one = Human("Empty")
-        self.player_two = None
+        self.player_two = Player("Empty")
         self.gesture_results = Gesture(None, None)
         self.story_line = ""
         self.winner = Player("Empty")
@@ -88,7 +87,7 @@ class Match:
 
     #  region Is_User_Ready
     def is_user_ready(self, human_or_bot):
-        setting = input("Are you ready to play? Enter 'y' for yes, \n"
+        setting = input("\nAre you ready to play? Enter 'y' for yes, \n"
                         "or 'n' to change the settings for the game:\n\n")
         if setting.lower() == 'y':
             #  Based off of the bots or no bots choice given in self.game_mode()
@@ -120,7 +119,10 @@ class Match:
     def option_human_v_computer(self):
         #  The human will go up against another human
         #  Instantiate a Gesture object.
-        self.gesture_results = Gesture(self.player_one, self.player_two)
+        #  print(f"{self.player_one.player}"), verified that it was player_one
+        #  print(f"{self.player_two.player}"), verified that it was player_two
+        self.gesture_results.set_player_one(self.player_one)
+        self.gesture_results.set_player_two(self.player_two)
 
         #  The gesture_results.human_v_computer should set the value of self.winner inside
         #  of the Gesture class.
@@ -130,13 +132,17 @@ class Match:
         #  by following the logic below.  The winner is now set and can be displayed in
         #  self.display_outro(self).
         self.winner = self.gesture_results.find_the_winner()
+
     #  endregion
 
     #  region Option_Human_V_Human
     def option_human_v_human(self):
         #  The human will go up against another human
         #  Instantiate a Gesture object.
-        self.gesture_results = Gesture(self.player_one, self.player_two)
+        #  print(f"{self.player_one.player}"), verified that it was player_one
+        #  print(f"{self.player_two.player}"), verified that it was player_two
+        self.gesture_results.set_player_one(self.player_one)
+        self.gesture_results.set_player_two(self.player_two)
 
         #  The gesture_results.human_v_human should set the value of self.winner inside
         #  of the Gesture class.
@@ -146,6 +152,7 @@ class Match:
         #  by following the logic below.  The winner is now set and can be displayed in
         #  self.display_outro(self).
         self.winner = self.gesture_results.find_the_winner()
+
     #  endregion
 
     #  region Display_Outro

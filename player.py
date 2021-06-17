@@ -5,6 +5,7 @@ class Player:
     human go up against an AI, or a human going up against
     another human.
     """
+
     #  endregion
 
     #  region Constructor
@@ -12,17 +13,22 @@ class Player:
         self.player = the_name  # Can be an AI or human
         self.gesture_options = ["Rock", "Paper", "Scissors", "Lizard", "Spock"]
         self.the_gesture = ""
-        self.lives = 3  # Dictates player lives
+        self.lives = 2  # Dictates player lives
+
     #  endregion
 
     #  region Gestures
     def gestures(self):
         for index in range(0, len(self.gesture_options)):
             print(f"{self.gesture_options[index]}\n")
+
     #  endregion
 
     #  region Choose_Gesture
     def choose_gesture(self):
-        print("Override this method")
-        pass
+        print(f"Override this method.")
+
     #  endregion
+
+    def loss(self):
+        self.lives = self.lives - 1

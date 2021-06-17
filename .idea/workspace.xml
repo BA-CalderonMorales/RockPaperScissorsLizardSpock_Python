@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01147034-e673-465d-b189-2ac8ee98e03d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dir_read_me/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RPSLS_Project.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/dir_rpsls_pdf_folder/RPSLS_Project.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/computer.py" beforeDir="false" afterPath="$PROJECT_DIR$/computer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gesture.py" beforeDir="false" afterPath="$PROJECT_DIR$/gesture.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/human.py" beforeDir="false" afterPath="$PROJECT_DIR$/human.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/match.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result_computer.py" beforeDir="false" afterPath="$PROJECT_DIR$/result_computer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result_human.py" beforeDir="false" afterPath="$PROJECT_DIR$/result_human.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result_computer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/result_human.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +39,9 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1tzk83qBmSFYibmjH0v9T8IIlrj" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -40,6 +50,22 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/directory_player_parent/directory_child_classes" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\DevCodeCamp\2. PyCharm\pythonProject\rpsls\directory_player_parent\directory_child_classes" />
+      <recent name="C:\DevCodeCamp\2. PyCharm\pythonProject\rpsls\directory_match_parent" />
+      <recent name="C:\DevCodeCamp\2. PyCharm\pythonProject\rpsls\directory_gesture_parent" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\DevCodeCamp\2. PyCharm\pythonProject\rpsls" />
+      <recent name="C:\DevCodeCamp\2. PyCharm\pythonProject\rpsls\dir_match_parent\dir_player_parent\dir_child_classes" />
+      <recent name="C:\DevCodeCamp\2. PyCharm\pythonProject\rpsls\dir_match_parent\dir_gesture_parent\dir_child_classes" />
+      <recent name="C:\DevCodeCamp\2. PyCharm\pythonProject\rpsls\dir_match_parent\dir_player_parent" />
+      <recent name="C:\DevCodeCamp\2. PyCharm\pythonProject\rpsls\dir_match_parent\dir_gesture_parent" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -54,7 +80,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="SCRIPT_NAME" value="C:\DevCodeCamp\2. PyCharm\pythonProject\rpsls\main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -85,21 +111,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/human.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/computer.py</url>
-          <line>12</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
