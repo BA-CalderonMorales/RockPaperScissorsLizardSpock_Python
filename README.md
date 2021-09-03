@@ -7,6 +7,6 @@
 <li>Make sure that you have the right venv configuration.</li>
 <li>Run the program, and enjoy playing the game!</li>
 </ol>
-<hr/>
-
+<h2> Here is a snippet of what you should see if you followed all the steps right: </h2>
+<img src="https://user-images.githubusercontent.com/62074841/132039591-5f8361a7-0ae6-4d29-b491-bba1512a7a86.png" />
 <p>There are further instructions once you get the game running in PyCharm.</p>
